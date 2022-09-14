@@ -1,0 +1,10 @@
+jobs:
+  - name: daily
+    targetName: dev
+    schedule: 0 12 * * *
+    timeout: 2h30m
+    steps:
+      - name: run models
+        command: dbt run -m concat
+      - name: test models
+        command: dbt test -m concat
