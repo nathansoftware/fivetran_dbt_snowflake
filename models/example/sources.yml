@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: PC_FIVETRAN_DB # database
+    schema: MYSQL_STREAMING_DB
+    tables:
+      - name: FAKE_USERS_RAW
+        identifier: FAKE_USERS_RAW #nome da tabela
+
+     

@@ -1,27 +1,16 @@
 
-/*
-    Welcome to your first dbt model!
-    Did you know that you can also configure models directly within SQL files?
-    This will override configurations stated in dbt_project.yml
-
-    Try changing "table" to "view" below
-*/
-
 {{ config(materialized='table') }}
 
-with source_data as (
+with FAKE_USERS_RAW as (
 
-    select 1 as id
-    union all
-    select null as id
+    INSERT INTO {{source('PC_FIVETRAN_DB','FAKE_USERS_RAW')}}
+    SELECT COUNTRY, FIRST_NAME, LAST_NAME, CPF, OCCUPATION, BIRTHDAY, CITY, ID, _FIVETRAN_DELETED, _FIVETRAN_SYNCED
+    FROM {{source('PC_FIVETRAN_DB','FAKE_USERS_RAW')}}
+    WHERE METADATA$ACTION='INSERT' AND METADATA$UPDATE='TRUE'
 
 )
 
-select *
-from source_data
-
-/*
-    Uncomment the line below to remove records with null `id` values
-*/
-
--- where id is not null
+INSERT INTO {{source('PC_FIVETRAN_DB','FAKE_USERS_RAW')}}
+    SELECT COUNTRY, FIRST_NAME, LAST_NAME, CPF, OCCUPATION, BIRTHDAY, CITY, ID, _FIVETRAN_DELETED, _FIVETRAN_SYNCED
+    FROM {{source('PC_FIVETRAN_DB','FAKE_USERS_RAW')}}
+    WHERE METADATA$ACTION='INSERT' AND METADATA$UPDATE='TRUE'
