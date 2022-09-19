@@ -1,0 +1,13 @@
+petz_transformation:
+    outputs:
+      dev:
+        account: odb38813.us-east-1
+        database: PC_FIVETRAN_DB
+        password: Mudar#123
+        role: ACCOUNTADMIN
+        schema: EMPLOYEE_DATA_SHEET
+        threads: 10
+        type: snowflake
+        user: NATHAN_PELICANO
+        warehouse: COMPUTE_WH
+    target: dev
